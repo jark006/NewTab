@@ -1,3 +1,3 @@
-<center><a style="font-size:18px;">NewTab</a></center>
+<center><p style="font-size:18px;">NewTab</p></center>
 
 ![](preview.png)
