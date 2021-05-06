@@ -4,19 +4,19 @@
     <style>
         body {
             text-align: center;
-            background-color: #222222;
+            /* background-color: #222222; */
+            background: url(NewTab_img/bg.jpg) top left;
+            background-size: 100%;
         }
-        .input{
+
+        .input {
             font-size: 20px;
-        }
-        .submit{
-            font-size: 18px;
-        }
-        .input{
             width: 400px;
-            height: 36px;
+            height: 32px;
         }
-        .submit{
+
+        .submit {
+            font-size: 20px;
             width: 160px;
             height: 32px;
         }
@@ -26,27 +26,30 @@
 
 <body>
     <div>
-        <img src="NewTab_img/baidu.png" height="100px">
+        <img src="NewTab_img/baidu.png" height="80px" alt="Baidu_Logo">
         <form name="input" target="_blank" action="https://www.baidu.com/s?" method="get">
-            <input class="input" type="text" value="" name="wd" >
-            <input class="submit" type="submit" value="百度一下" >
+            <input class="input" type="text" value="" name="wd">
         </form>
     </div>
-
+    <div style="height: 30px;"></div>
     <div>
-        <img src="NewTab_img/google.png" height="80px">
+        <img src="NewTab_img/google.png" height="80px" alt="Google_Logo" />
         <form name="input" target="_blank" action="https://www.google.com/search?" method="get">
-            <input class="input" type="text" value="" name="q" >
-            <input class="submit" type="submit" value="Google" >
+            <input class="input" type="text" value="" name="q">
         </form>
     </div>
 
+    <div style="height: 30px;"></div>
     <div>
-        <img src="NewTab_img/duckduckgo.png" height="100px">
+        <img src="NewTab_img/duckduckgo.png" height="80px" alt="Duckduckgo_Logo">
         <form name="input" target="_blank" action="https://duckduckgo.com/?" method="get">
-            <input class="input" type="text" value="" name="q" >
-            <input class="submit" type="submit" value="DuckDuckGo" >
+            <input class="input" type="text" value="" name="q">
         </form>
     </div>
 </body>
+<div style="color: white; position:fixed; bottom:0px; width:100%; text-align:center;">
+    ©2021 Make by JARK006 V1.0&ensp;&ensp;
+    <a style="color: #aaaaff;" href="https://github.com/jark006">Github.com/JARK006</a>
+</div>
+
 </html>

@@ -1,3 +1,3 @@
-<center><p style="font-size:18px;">NewTab</p></center>
+<center><p style="font-size:18px;">JARK's personal NewTab</p></center>
 
-![](preview.png)
+![](preview.jpg)
