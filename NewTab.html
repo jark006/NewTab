@@ -4,7 +4,6 @@
     <style>
         body {
             text-align: center;
-            /* background-color: #222222; */
             background: url(NewTab_img/bg.jpg) top left;
             background-size: 100%;
         }
@@ -20,6 +19,28 @@
             width: 160px;
             height: 32px;
         }
+
+        a[data-type="vk"] {background: #45668e;}
+        a[data-type="fb"] {background: #3b5998;}
+        a[data-type="ok"] {background: #ed812b;}
+        a[data-type="mr"] {background: #168de2;}
+        a[data-type="gp"] {background: #dd4b39;}
+        a[data-type="li"] {background: #0976b4;}
+        a[data-type="tw"] {background: #55acee;}
+        a[data-type="lj"] {background: #004359;}
+        a[data-type="tm"] {background: #35465c;}
+        a[data-type="bl"] {background: #f57d00;}
+        a[data-type="pt"] {background: #cc2127;}
+        a[data-type="di"] {background: #000000;}
+        a[data-type="en"] {background: #7ac142;}
+        a[data-type="rd"] {background: #5f99cf;}
+        a[data-type="su"] {background: #eb4924;}
+        a[data-type="po"] {background: #d3505a;}
+        a[data-type="sb"] {background: #26B1F6;}
+        a[data-type="bf"] {background: #323b43;}
+        a[data-type="ra"] {background: #990000;}
+        .aLink {color: #ffffff; display: inline-block; width: 120px; padding: 30px; margin: 10px auto; cursor: pointer;font-size: 22px;}
+        .bookmark {font-family: Arial, Helvetica, sans-serif; font-size: 24px; line-height: 24px; text-align: center;}
     </style>
     <title>简单首页</title>
 </header>
@@ -31,7 +52,9 @@
             <input class="input" type="text" value="" name="wd">
         </form>
     </div>
+
     <div style="height: 30px;"></div>
+
     <div>
         <img src="NewTab_img/google.png" height="80px" alt="Google_Logo" />
         <form name="input" target="_blank" action="https://www.google.com/search?" method="get">
@@ -40,16 +63,35 @@
     </div>
 
     <div style="height: 30px;"></div>
+
     <div>
         <img src="NewTab_img/duckduckgo.png" height="80px" alt="Duckduckgo_Logo">
         <form name="input" target="_blank" action="https://duckduckgo.com/?" method="get">
             <input class="input" type="text" value="" name="q">
         </form>
     </div>
-</body>
-<div style="color: white; position:fixed; bottom:0px; width:100%; text-align:center;">
-    ©2021 Make by JARK006 V1.0&ensp;&ensp;
-    <a style="color: #aaaaff;" href="https://github.com/jark006">Github.com/JARK006</a>
-</div>
 
+    <bookmark>
+        <div class="goodshare-color">
+            <a class="aLink" href="http://www.bilibili.com/" data-type="mr">BiliBili</a>
+            <a class="aLink" href="https://mail.google.com/" data-type="gp">Gmail</a>
+            <a class="aLink" href="https://github.com/jark006" data-type="vk">Github</a>
+            <a class="aLink" href="https://www.youtube.com/" data-type="pt">Youtube</a>
+            <a class="aLink" href="http://bbs.pcbeta.com/" data-type="tw">远景论坛</a>
+        </div>
+    </bookmark>
+    
+    <bookmark>
+        <div class="goodshare-color">
+            <a class="aLink" href="https://leetcode-cn.com/" data-type="bl">Leetcode</a>
+            <a class="aLink" href="https://www.ithome.com/" data-type="ra">IThome</a>
+        </div>
+    </bookmark>
+
+    <div style="color: white; position:fixed; bottom:0px; width:100%; text-align:center;">
+        ©2021 Make by JARK006 V1.0&ensp;&ensp;
+        <a style="color: #aaaaff;" href="https://github.com/jark006">Github.com/JARK006</a>
+    </div>
+
+</body>
 </html>
