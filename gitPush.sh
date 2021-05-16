@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ $# == 0 ];then
     echo "Push错误！！！没有带更新说明。"
