@@ -1,12 +1,15 @@
-​<!DOCTYPE html>
+​
+<!DOCTYPE html>
 <html>
-    
+
 <head>
     <style>
         body {
             text-align: center;
             background: url(NewTab_img/bg.jpg) top left;
             background-size: 100%;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .input {
@@ -20,63 +23,94 @@
             width: 160px;
             height: 32px;
         }
-        .aLink {color: #ffffff; display: inline-block; }
-        .bmimg {border-radius: 20px; vertical-align: middle; height: 100px; width: 200px; padding: 10px;  cursor: pointer;}
-        .bookmark {font-family: Arial, Helvetica, sans-serif; font-size: 24px; line-height: 24px; text-align: center;}
+
+        .aLink {
+            color: #ffffff;
+            display: inline-block;
+        }
+
+        .bmimg {
+            border-radius: 20px;
+            vertical-align: middle;
+            height: 100px;
+            width: 200px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .bookmark {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            line-height: 24px;
+            text-align: center;
+        }
+
+        #div1,
+        #div2,
+        #div3,
+        #div4 {
+            display: inline-block;
+        }
     </style>
 
     <title>简单首页</title>
-
-    <link rel="shortcut icon" href="favicon.ico" mce_href="favicon.ico" type="image/x-icon" media="screen">
+    <link rel="icon" type="image/png" href="NewTab_img/ico.png">
 </head>
 
 <body>
     <div>
-        <img src="NewTab_img/baidu.png" height="80px" alt="Baidu_Logo">
-        <form name="input" target="_blank" action="https://www.baidu.com/s?" method="get">
-            <input class="input" type="text" name="wd" placeholder="百度一下">
-        </form>
+        <div id="div1">
+            <img src="NewTab_img/baidu.png" height="80px" alt="Baidu_Logo">
+            <form name="input" target="_blank" action="https://www.baidu.com/s?" method="get">
+                <input class="input" type="text" name="wd" placeholder="百度一下">
+            </form>
+        </div>
+        <div id="div1" style="width: 40px;"></div>
+        <div id="div2">
+            <img src="NewTab_img/bing.png" height="80px" alt="Bing_Logo">
+            <form name="input" target="_blank" action="https://cn.bing.com/search?" method="get">
+                <input class="input" type="text" name="q" placeholder="Bing search">
+            </form>
+        </div>
     </div>
-
-    <div style="height: 5px;"></div>
-
     <div>
-        <img src="NewTab_img/google.png" height="80px" alt="Google_Logo" />
-        <form name="input" target="_blank" action="https://www.google.com/search?" method="get">
-            <input class="input" type="text" name="q" placeholder="Google search">
-        </form>
+        <div id="div3">
+            <img src="NewTab_img/duckduckgo.png" height="80px" alt="Duckduckgo_Logo">
+            <form name="input" target="_blank" action="https://duckduckgo.com/?" method="get">
+                <input class="input" type="text" name="q" placeholder="Duck go go go">
+            </form>
+        </div>
+        <div id="div1" style="width: 40px;"></div>
+        <div id="div4">
+            <img src="NewTab_img/google.png" height="80px" alt="Google_Logo" />
+            <form name="input" target="_blank" action="https://www.google.com/search?" method="get">
+                <input class="input" type="text" name="q" placeholder="Google search">
+            </form>
+        </div>
     </div>
-
-    <div style="height: 5px;"></div>
-
-    <div>
-        <img src="NewTab_img/duckduckgo.png" height="80px" alt="Duckduckgo_Logo">
-        <form name="input" target="_blank" action="https://duckduckgo.com/?" method="get">
-            <input class="input" type="text" name="q" placeholder="Duck go go go">
-        </form>
-    </div>
-
+    <div style="height: 40px;"></div>
     <bookmark>
         <div>
-            <a href="https://www.bilibili.com/" ><img class="bmimg" src="NewTab_img/bilibili.png" /></a>
-            <a href="https://mail.google.com/" ><img class="bmimg" src="NewTab_img/gmail.png" /></a>
-            <a href="https://github.com/jark006" ><img class="bmimg" src="NewTab_img/github.png" /></a>
-            <a href="https://www.youtube.com/" ><img class="bmimg" src="NewTab_img/youtube.png" /></a>
+            <a href="https://www.bilibili.com/"><img class="bmimg" src="NewTab_img/bilibili.png" /></a>
+            <a href="https://www.ithome.com/"><img class="bmimg" src="NewTab_img/ithome.png" /></a>
+            <a href="https://bbs.pcbeta.com/"><img class="bmimg" src="NewTab_img/pcbeta.png" /></a>
         </div>
     </bookmark>
-    
     <bookmark>
         <div>
-            <a href="https://leetcode-cn.com/" ><img class="bmimg" src="NewTab_img/leetcode.png" /></a>
-            <a href="https://www.ithome.com/" ><img class="bmimg" src="NewTab_img/ithome.png" /></a>
-            <a href="https://bbs.pcbeta.com/" ><img class="bmimg" src="NewTab_img/pcbeta.png" /></a>
+            <!-- <a href="https://leetcode-cn.com/" ><img class="bmimg" src="NewTab_img/leetcode.png" /></a> -->
+            <a href="https://github.com/jark006"><img class="bmimg" src="NewTab_img/github.png" /></a>
+            <a href="https://mail.google.com/"><img class="bmimg" src="NewTab_img/gmail.png" /></a>
+            <a href="https://www.youtube.com/"><img class="bmimg" src="NewTab_img/youtube.png" /></a>
         </div>
     </bookmark>
 
-    <div style="color: white; position:fixed; bottom:0px; width:100%; text-align:center;">
-        ©2021 Make by JARK006 V1.3.1&ensp;&ensp;
-        <a style="color: #aaaaff;" href="https://github.com/jark006">Github.com/JARK006</a>
-    </div>
+
 
 </body>
+<div style="color: white; position:fixed; bottom:0px; width:100%; text-align:center;">
+    ©2021 Make by JARK006 V1.4&ensp;&ensp;
+    <a style="color: #aaaaff;" href="https://github.com/jark006">Github.com/JARK006</a>
+</div>
+
 </html>
