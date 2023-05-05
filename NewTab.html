@@ -8,21 +8,26 @@
             background-size: 100%;
             padding-left: 0;
             padding-right: 0;
-            padding-top:50px;
+            padding-top:30px;
         }
 
         .input {
             font-size: 20px;
             width: 400px;
-            height: 32px;
-            background-color: #ffffffbb;
+            height: 40px;
+            background-color: #ffffffaa;
             text-align:center;
+            border-radius: 20px;
+            border: none;
         }
 
-        .submit {
-            font-size: 20px;
-            width: 160px;
-            height: 32px;
+        .input:focus{
+            outline: none;
+            background-color: #ffffffdd;
+        }
+
+        .input:focus::-webkit-input-placeholder{
+            color: transparent;
         }
 
         .aLink {
@@ -37,6 +42,10 @@
             width: 200px;
             padding: 10px;
             cursor: pointer;
+        }
+
+        .searchImg {
+            height: 60px;
         }
 
         .bookmark {
@@ -61,35 +70,50 @@
     <div>
         <div>
             <div class="searchBox">
-                <a href="https://www.baidu.com/"><img src="NewTab_img/baidu.png" height="80px" alt="Baidu_Logo"></a>
+                <a href="https://www.baidu.com/"><img src="NewTab_img/baidu.png" class="searchImg"/></a>
                 <form name="input" target="_blank" action="https://www.baidu.com/s?" method="get">
-                    <input class="input" type="text" name="wd" placeholder="百度一下">
+                    <input class="input" type="text" name="wd" placeholder="众里寻他千百度">
                 </form>
             </div>
             <div style="width: 40px; display: inline-block;"></div>
             <div class="searchBox">
-                <a href="https://cn.bing.com/"><img src="NewTab_img/bing.png" height="80px" alt="Bing_Logo"></a>
+                <a href="https://cn.bing.com/"><img src="NewTab_img/bing.png" class="searchImg"/></a>
                 <form name="input" target="_blank" action="https://cn.bing.com/search?" method="get">
-                    <input class="input" type="text" name="q" placeholder="Bing search">
+                    <input class="input" type="text" name="q" placeholder="Bingo...">
                 </form>
             </div>
         </div>
         <div>
             <div class="searchBox">
-                <a href="https://start.duckduckgo.com/"><img src="NewTab_img/duckduckgo.png" height="80px" alt="Duckduckgo_Logo"></a>
+                <a href="https://start.duckduckgo.com/"><img src="NewTab_img/duckduckgo.png" class="searchImg"/></a>
                 <form name="input" target="_blank" action="https://duckduckgo.com/?" method="get">
                     <input class="input" type="text" name="q" placeholder="Duck go go go">
                 </form>
             </div>
             <div style="width: 40px; display: inline-block;"></div>
             <div class="searchBox">
-                <a href="https://www.google.com/"><img src="NewTab_img/google.png" height="80px" alt="Google_Logo" /></a>
+                <a href="https://www.google.com/"><img src="NewTab_img/google.png" class="searchImg"/></a>
                 <form name="input" target="_blank" action="https://www.google.com/search?" method="get">
-                    <input class="input" type="text" name="q" placeholder="Google search">
+                    <input class="input" type="text" name="q" placeholder="Gulu gulu">
                 </form>
             </div>
         </div>
-        <div style="height: 40px;"></div>
+        <div>
+            <div class="searchBox">
+                <a href="https://kaifa.baidu.com/"><img src="NewTab_img/baiduDev.png" class="searchImg"/></a>
+                <form name="input" target="_blank" action="https://kaifa.baidu.com/searchPage?" method="get">
+                    <input class="input" type="text" name="wd" placeholder="Dev du du du">
+                </form>
+            </div>
+            <div style="width: 40px; display: inline-block;"></div>
+            <div class="searchBox">
+                <a href="https://yandex.com/"><img src="NewTab_img/yandex.png" class="searchImg"/></a>
+                <form name="input" target="_blank" action="https://yandex.com/search/?" method="get">
+                    <input class="input" type="text" name="text" placeholder="Yandex">
+                </form>
+            </div>
+        </div>
+        <div style="height: 20px;"></div>
         <bookmark>
             <div>
                 <a href="https://www.bilibili.com/"><img class="bmimg" src="NewTab_img/bilibili.png" /></a>
