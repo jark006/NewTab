@@ -1,0 +1,15 @@
+{
+   "chrome_url_overrides": {
+      "newtab": "NewTab.html"
+   },
+   "default_locale": "zh_CN",
+   "description": "JARK006's personal NewTab",
+   "icons": {
+      "128": "NewTab_img/icon128.png",
+      "96": "NewTab_img/icon96.png",
+      "32": "NewTab_img/icon32.png"
+   },
+   "manifest_version": 3,
+   "name": "JARK_NewTab",
+   "version": "1.5"
+}
