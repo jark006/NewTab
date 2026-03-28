@@ -1,138 +1,409 @@
-​<!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <style>
-        body {
-            text-align: center;
-            background: url(NewTab_img/bg.jpg);
-            background-size: 100%;
-            padding-left: 0;
-            padding-right: 0;
-            padding-top: 3px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新标签页</title>
+  <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ─── CSS Variables ─────────────────────────────────── */
+    :root {
+      --bg-deep:             #080c14;
+      --glass-bg:            rgba(255,255,255,0.055);
+      --glass-bg-hover:      rgba(255,255,255,0.09);
+      --glass-border:        rgba(255,255,255,0.1);
+      --glass-border-active: rgba(62,207,255,0.5);
+      --accent:              #3ecfff;
+      --accent-glow:         rgba(62,207,255,0.35);
+      --accent-soft:         rgba(62,207,255,0.15);
+      --text-primary:        #e8f4ff;
+      --text-secondary:      rgba(232,244,255,0.55);
+      --text-muted:          rgba(232,244,255,0.28);
+      --tab-active-bg:       rgba(62,207,255,0.18);
+      --shadow-card:         0 8px 40px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3);
+      --shadow-glow:         0 0 20px rgba(62,207,255,0.2);
+      --radius-card:         20px;
+      --radius-pill:         999px;
+      --blur:                blur(20px);
+      --font:                'Sora', 'Segoe UI', system-ui, sans-serif;
+    }
 
-        .input {
-            font-size: 20px;
-            width: 400px;
-            height: 50px;
-            background-color: #ffffffaa;
-            text-align: center;
-            border-radius: 25px;
-            border: none;
-        }
+    /* ─── Reset & Base ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .input:focus {
-            outline: none;
-            background-color: #ffffffdd;
-        }
+    html, body {
+      width: 100%; min-height: 100%;
+      font-family: var(--font);
+      color: var(--text-primary);
+    }
 
-        .input:focus::-webkit-input-placeholder {
-            color: transparent;
-        }
+    body {
+      background: var(--bg-deep);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 16px 44px;
+      gap: 28px;
+    }
 
-        .aLink {
-            color: #ffffff;
-            display: inline-block;
-        }
+    /* ─── Animated Background Layers ───────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: url('NewTab_img/bg.jpg') center/cover no-repeat;
+      z-index: -2;
+    }
+    /* Dark overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        rgba(8, 12, 20, 0.72),
+        radial-gradient(ellipse 70% 55% at 15% 10%,  rgba(15,60,120,0.6)   0%, transparent 65%),
+        radial-gradient(ellipse 55% 45% at 85% 88%,  rgba(8, 45,100,0.5)   0%, transparent 65%),
+        radial-gradient(ellipse 38% 32% at 78% 12%,  rgba(62,207,255,0.09) 0%, transparent 55%),
+        radial-gradient(ellipse 32% 28% at 22% 88%,  rgba(62,207,255,0.06) 0%, transparent 55%);
+      z-index: -1;
+      animation: nebula 14s ease-in-out infinite alternate;
+    }
 
-        .bmimg {
-            border-radius: 20px;
-            vertical-align: middle;
-            height: 125px;
-            width: 250px;
-            padding: 10px;
-            cursor: pointer;
-        }
+    @keyframes nebula {
+      from { opacity: 0.85; transform: scale(1); }
+      to   { opacity: 1;    transform: scale(1.05); }
+    }
 
-        .searchImg {
-            height: 100px;
-        }
+    /* ─── Glass Base ────────────────────────────────────── */
+    .glass {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+      box-shadow: var(--shadow-card);
+    }
 
-        .bookmark {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 24px;
-            line-height: 24px;
-            text-align: center;
-        }
+    /* ─── Clock ─────────────────────────────────────────── */
+    #clock {
+      font-size: 25px;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      animation: fadeUp 0.5s cubic-bezier(.22,1,.36,1) both;
+    }
+    #clock b { color: var(--text-secondary); font-weight: 400; }
 
-        .searchBox {
-            display: inline-block;
-        }
-    </style>
+    /* ─── Search Card ───────────────────────────────────── */
+    #search-card {
+      width: min(800px, 100%);
+      border-radius: var(--radius-card);
+      padding: 10px 10px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      animation: fadeUp 0.55s 0.04s cubic-bezier(.22,1,.36,1) both;
+    }
 
-    <title>首页</title>
-    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    /* — Layer 1: Logo — */
+    #logo-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #engine-logo {
+      height: 100px;
+      object-fit: contain;
+      cursor: pointer;
+      filter: drop-shadow(0 0 10px rgba(62,207,255,0.28));
+      transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), filter 0.3s;
+    }
+    #engine-logo:hover {
+      transform: scale(1.09);
+      filter: drop-shadow(0 0 18px rgba(62,207,255,0.55));
+    }
+    .logo-anim {
+      animation: logoSwitch 0.28s ease both;
+    }
+    @keyframes logoSwitch {
+      from { opacity: 0; transform: scale(0.85) translateY(5px); }
+      to   { opacity: 1; transform: scale(1)    translateY(0); }
+    }
+
+    /* — Layer 2: Engine Tabs — */
+    #engine-tabs {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .tab-btn {
+      font-family: var(--font);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--text-secondary);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-pill);
+      padding: 6px 17px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      line-height: 1;
+    }
+    .tab-btn:hover {
+      background: var(--glass-bg-hover);
+      color: var(--text-primary);
+      border-color: rgba(255,255,255,0.17);
+    }
+    .tab-btn.active {
+      background: var(--tab-active-bg);
+      border-color: var(--glass-border-active);
+      color: var(--accent);
+      box-shadow: 0 0 14px rgba(62,207,255,0.18),
+                  inset 0 0 12px rgba(62,207,255,0.07);
+    }
+
+    /* — Layer 3: Input + Button — */
+    #search-row {
+      display: flex;
+      width: 100%;
+      gap: 10px;
+      align-items: center;
+    }
+    #search-input {
+      flex: 1;
+      height: 48px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-pill);
+      color: var(--text-primary);
+      font-family: var(--font);
+      font-size: 14.5px;
+      font-weight: 400;
+      padding: 0 22px;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+    #search-input::placeholder { color: var(--text-muted); }
+    #search-input:focus {
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(62,207,255,0.44);
+      box-shadow: 0 0 0 3px rgba(62,207,255,0.1), var(--shadow-glow);
+    }
+    #search-input:focus::placeholder { color: transparent; }
+
+    #search-btn {
+      flex-shrink: 0;
+      height: 48px;
+      width: 48px;
+      background: linear-gradient(135deg, rgba(62,207,255,0.3), rgba(62,207,255,0.1));
+      border: 1px solid rgba(62,207,255,0.38);
+      border-radius: 50%;
+      color: var(--accent);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.22s cubic-bezier(.34,1.56,.64,1);
+    }
+    #search-btn:hover {
+      background: linear-gradient(135deg, rgba(62,207,255,0.44), rgba(62,207,255,0.22));
+      box-shadow: 0 0 22px rgba(62,207,255,0.42);
+      transform: scale(1.1);
+    }
+    #search-btn:active { transform: scale(0.95); }
+    #search-btn svg { width: 19px; height: 19px; }
+
+    /* ─── Section Divider ───────────────────────────────── */
+    .section-label {
+      width: min(700px, 100%);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: fadeUp 0.55s 0.1s cubic-bezier(.22,1,.36,1) both;
+    }
+    .section-label::before,
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.09), transparent);
+    }
+
+    /* ─── Bookmarks Card ────────────────────────────────── */
+    #bookmarks-card {
+      width: min(1200px, 100%);
+      border-radius: var(--radius-card);
+      padding: 30px 30px;
+      animation: fadeUp 0.55s 0.14s cubic-bezier(.22,1,.36,1) both;
+    }
+    #bookmarks-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+    }
+
+    /* 单层卡片 */
+    .bm-item {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 1;   /* ⭐ 关键：2:1比例 */
+    border-radius: 16px;
+    overflow: hidden;
+
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+
+    transition: all 0.3s cubic-bezier(.34,1.56,.64,1);
+    }
+
+    /* 图片填充 */
+    .bm-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;     /* ⭐ 填满卡片 */
+    transition: transform 0.35s ease, filter 0.3s;
+    }
+
+    /* hover效果 */
+    .bm-item:hover {
+    transform: translateY(-6px) scale(1.04);
+    border-color: rgba(62,207,255,0.4);
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.45),
+        0 0 18px rgba(62,207,255,0.18);
+    }
+
+    /* 图片微动效 */
+    .bm-item:hover .bm-img {
+    transform: scale(1.08);
+    filter: brightness(1.08);
+    }
+
+    /* ─── Keyframes ─────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── Responsive ─────────────────────────────────────── */
+    @media (max-width: 600px) {
+      body { gap: 20px; padding: 20px 10px 32px; }
+      #search-card { padding: 22px 16px 20px; gap: 16px; }
+      #bookmarks-card { padding: 16px 12px; }
+      #bookmarks-grid { gap: 7px; }
+      .bm-item { padding: 8px; border-radius: 12px; }
+      .bm-icon-wrap { width: 38px; height: 38px; border-radius: 10px; }
+      .bm-icon { width: 26px; height: 26px; }
+    }
+
+    /* ─── Scrollbar ─────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 99px; }
+  </style>
 </head>
 
 <body>
-    <div>
-        <div>
-            <div class="searchBox">
-                <a href="https://www.baidu.com/"><img src="NewTab_img/baidu.png" class="searchImg" /></a>
-                <form name="input" target="_blank" action="https://www.baidu.com/s?" method="get">
-                    <input class="input" name="wd" placeholder="众里寻她千百度">
-                </form>
-            </div>
-            <div style="width: 40px; display: inline-block;"></div>
-            <div class="searchBox">
-                <a href="https://www.bing.com/"><img src="NewTab_img/bing.png" class="searchImg" /></a>
-                <form name="input" target="_blank" action="https://www.bing.com/search?" method="get">
-                    <input class="input" type="text" name="q" placeholder="Bingo...">
-                </form>
-            </div>
-            <div style="width: 40px; display: inline-block;"></div>
-            <div class="searchBox">
-                <a href="https://start.duckduckgo.com/"><img src="NewTab_img/duckduckgo.png" class="searchImg" /></a>
-                <form name="input" target="_blank" action="https://duckduckgo.com/?" method="get">
-                    <input class="input" type="text" name="q" placeholder="Duck go go go">
-                </form>
-            </div>
-        </div>
-        <div>
-        </div>
-        <div>
-            <div class="searchBox">
-                <a href="https://kaifa.baidu.com/"><img src="NewTab_img/baiduDev.png" class="searchImg"/></a>
-                <form name="input" target="_blank" action="https://kaifa.baidu.com/searchPage?" method="get">
-                    <input class="input" type="text" name="wd" placeholder="Dev du du du">
-                </form>
-            </div>
-            <div style="width: 40px; display: inline-block;"></div>
-            <div class="searchBox">
-                <a href="https://www.google.com/"><img src="NewTab_img/google.png" class="searchImg" /></a>
-                <form name="input" target="_blank" action="https://www.google.com/search?" method="get">
-                    <input class="input" type="text" name="q" placeholder="Gulu gulu">
-                </form>
-            </div>
-            <div style="width: 40px; display: inline-block;"></div>
-            <div class="searchBox">
-                <a href="https://yandex.com/"><img src="NewTab_img/yandex.png" class="searchImg"/></a>
-                <form name="input" target="_blank" action="https://yandex.com/search/?" method="get">
-                    <input class="input" type="text" name="text" placeholder="Yandex">
-                </form>
-            </div>
-        </div>
-        <div style="height: 20px;"></div>
-        <bookmark>
-            <div>
-                <a href="https://www.bilibili.com/"><img class="bmimg" src="NewTab_img/bilibili.png" /></a>
-                <a href="https://www.ithome.com/"><img class="bmimg" src="NewTab_img/ithome.png" /></a>
-                <a href="https://bbs.pcbeta.com/"><img class="bmimg" src="NewTab_img/pcbeta.png" /></a>
-                <a href="https://github.com/"><img class="bmimg" src="NewTab_img/github.png" /></a>
-                <a href="https://v2ex.com/"><img class="bmimg" src="NewTab_img/v2ex.png" /></a>
-                </div>
-            <div>
-                <a href="https://meta.appinn.net/"><img class="bmimg" src="NewTab_img/appinn.png" /></a>
-                <a href="https://www.52pojie.cn/forum.php" ><img class="bmimg" src="NewTab_img/52pojie.png" /></a>
-                <a href="https://www.nodeseek.com/"><img class="bmimg" src="NewTab_img/nodeseek.png" /></a>
-                <a href="https://mail.google.com/"><img class="bmimg" src="NewTab_img/gmail.png" /></a>
-                <a href="https://www.youtube.com/"><img class="bmimg" src="NewTab_img/youtube.png" /></a>
-            </div>
-        </bookmark>
+
+  <!-- ── Clock ──────────────────────────────────────────── -->
+  <time id="clock" aria-live="off"><b id="clock-date"></b>&nbsp;&nbsp;<b id="clock-time">--:--:--</b></time>
+
+  <!-- ── Search Card ────────────────────────────────────── -->
+  <section id="search-card" class="glass" aria-label="搜索">
+
+    <!-- Layer 1: Logo -->
+    <div id="logo-area">
+      <a id="engine-home-link" href="https://www.bing.com/" target="_blank" tabindex="-1">
+        <img id="engine-logo" src="NewTab_img/bing.png" alt="Bing">
+      </a>
     </div>
 
-</body>
+    <!-- Layer 2: Engine Tabs -->
+    <nav id="engine-tabs" aria-label="搜索引擎">
+      <button class="tab-btn"        data-idx="0">Baidu</button>
+      <button class="tab-btn active" data-idx="1">Bing</button>
+      <button class="tab-btn"        data-idx="2">Duck</button>
+      <button class="tab-btn"        data-idx="3">Dev</button>
+      <button class="tab-btn"        data-idx="4">Google</button>
+      <button class="tab-btn"        data-idx="5">Yandex</button>
+    </nav>
 
+    <!-- Layer 3: Input + Search Button -->
+    <div id="search-row">
+      <input
+        id="search-input"
+        type="text"
+        autocomplete="off"
+        spellcheck="false"
+        placeholder="Bingo..."
+        aria-label="搜索内容"
+      >
+      <button id="search-btn" aria-label="搜索">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="7"/>
+          <line x1="16.65" y1="16.65" x2="22" y2="22"/>
+        </svg>
+      </button>
+    </div>
+
+  </section>
+
+
+  <!-- ── Bookmarks Card ─────────────────────────────────── -->
+  <section id="bookmarks-card" class="glass" aria-label="常用网站">
+    <nav id="bookmarks-grid">
+
+      <a class="bm-item" href="https://www.bilibili.com/" target="_blank">
+        <img class="bm-img" src="NewTab_img/bilibili.png" alt="Bilibili" loading="eager">
+      </a>
+      <a class="bm-item" href="https://www.ithome.com/" target="_blank">
+        <img class="bm-img" src="NewTab_img/ithome.png" alt="IT之家" loading="eager">
+      </a>
+      <a class="bm-item" href="https://bbs.pcbeta.com/" target="_blank">
+        <img class="bm-img" src="NewTab_img/pcbeta.png" alt="PCBeta" loading="eager">
+      </a>
+      <a class="bm-item" href="https://github.com/" target="_blank">
+        <img class="bm-img" src="NewTab_img/github.png" alt="GitHub" loading="eager">
+      </a>
+      <a class="bm-item" href="https://v2ex.com/" target="_blank">
+        <img class="bm-img" src="NewTab_img/v2ex.png" alt="V2EX" loading="eager">
+      </a>
+
+      <a class="bm-item" href="https://meta.appinn.net/" target="_blank">
+        <img class="bm-img" src="NewTab_img/appinn.png" alt="Appinn" loading="eager">
+      </a>
+      <a class="bm-item" href="https://www.52pojie.cn/forum.php" target="_blank">
+        <img class="bm-img" src="NewTab_img/52pojie.png" alt="52破解" loading="eager">
+      </a>
+      <a class="bm-item" href="https://www.nodeseek.com/" target="_blank">
+        <img class="bm-img" src="NewTab_img/nodeseek.png" alt="NodeSeek" loading="eager">
+      </a>
+      <a class="bm-item" href="https://mail.google.com/" target="_blank">
+        <img class="bm-img" src="NewTab_img/gmail.png" alt="Gmail" loading="eager">
+      </a>
+      <a class="bm-item" href="https://www.youtube.com/" target="_blank">
+        <img class="bm-img" src="NewTab_img/youtube.png" alt="YouTube" loading="eager">
+      </a>
+
+    </nav>
+  </section>
+
+  <script src="newtab.js" defer></script>
+
+</body>
 </html>
