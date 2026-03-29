@@ -110,7 +110,7 @@ const pad2 = n => String(n).padStart(2, '0');
 function tickClock() {
   const now = new Date();
   const dateStr =
-    `${now.getFullYear()}.${pad2(now.getMonth() + 1)}.${pad2(now.getDate())}` +
+    `${now.getFullYear()}-${pad2(now.getMonth() + 1)}-${pad2(now.getDate())}` +
     ` 周${DAY_NAMES[now.getDay()]}`;
   const timeStr =
     `${pad2(now.getHours())}:${pad2(now.getMinutes())}:${pad2(now.getSeconds())}`;
