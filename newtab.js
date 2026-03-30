@@ -14,7 +14,7 @@ const ENGINES = [
     name: 'Bing',
     icon: 'NewTab_img/bing.png',
     home: 'https://www.bing.com/',
-    action: 'https://www.bing.com/search?',
+    action: 'https://cn.bing.com/search?',
     param: 'q',
     placeholder: 'Bingo...',
   },
